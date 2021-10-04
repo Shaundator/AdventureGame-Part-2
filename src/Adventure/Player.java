@@ -9,8 +9,8 @@ public class Player {
     int weightLimit = 20;
     ArrayList<Items> inventory = new ArrayList();
 
-    public Player(){
-        this.name="You";
+    public Player(String name){
+        this.name=name;
     }
     public void setPlayerName(String name){
         this.name=name;
@@ -54,7 +54,7 @@ public class Player {
         int itemAmount = inventory.size();
         String result = "";
         for(int i=0; i<itemAmount; i++){
-            result += "\n" + inventory.get(i).name;
+            result += "\n" + inventory.get(i).name+"("+inventory.get(i).nameID+")";
         }
         return result;
     }
@@ -90,7 +90,6 @@ public class Player {
 
     public Room getPlayerRoom() {
         return getPlayerRoom();
-
     }
     public void setPlayerRoom(Room nextRoom) {
         this.playerRoom=nextRoom;

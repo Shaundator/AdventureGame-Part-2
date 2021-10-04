@@ -26,7 +26,7 @@ public class Room {
     public String getItems() {
         String result = "";
         for(int i=0; i<items.size(); i++){
-            result += "\n" + items.get(i).name;
+            result += "\n" + items.get(i).name + "("+items.get(i).nameID+")";
         }
         return result;
     }
