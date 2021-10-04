@@ -13,12 +13,12 @@ public class Map {
     Room room9 = new Room("A bench by a lake", "The best place to take a nap, especially during the night");
     Room room10 = new Room("Home", "Your home, you can barely recognise it");
 
-    Items item1 = new Items("Magnificent Rock","rock",2);
-    Items item2 = new Items("Someone's collection of pokemon cards","cards",10);
-    Items item3 = new Items("A really big gun","gun",10);
-    Items item4 = new Items("The number 1","1",1);
-    Items item10 = new Items("Sleep medication","meds",2);
-    Items item11 = new Items("A tent","tent",15);
+    Items item1 = new Items("magnificent Rock","rock",2);
+    Items item2 = new Items("collection of pokemon cards","cards",10);
+    Items item3 = new Items("really big gun","gun",10);
+    Items item4 = new Items("number 1","1",1);
+    Items item10 = new Items("ability to count sheep","sheep",2);
+    Items item11 = new Items("tent","tent",15);
 
     //  1 = 2 = 3 = home
     //  |   X   |
@@ -57,6 +57,7 @@ public class Map {
         room2.addItem(item1);
         room2.addItem(item4);
         room5.addItem(item1);
+        room4.addItem(item10);
     }
 
 

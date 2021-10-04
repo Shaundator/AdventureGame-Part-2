@@ -12,10 +12,6 @@ public class Player {
     public Player(String name){
         this.name=name;
     }
-    public void setPlayerName(String name){
-        this.name=name;
-    }
-
     public void takeItem(Items item){
         for(int i=0; i<playerRoom.items.size(); i++){
             if(item==playerRoom.items.get(i)){
@@ -50,19 +46,13 @@ public class Player {
         }
         return null;
     }
-    public String getInventory(){
-        int itemAmount = inventory.size();
-        String result = "";
-        for(int i=0; i<itemAmount; i++){
-            result += "\n" + inventory.get(i).name+"("+inventory.get(i).nameID+")";
-        }
-        return result;
-    }
+
     public void getStarterRoom(){
         playerRoom=map.room1;
         map.createMap();
         map.putItems();
     }
+
 
     public int getDiscoveryEnd() {
         return discoveryEnd;
@@ -87,13 +77,6 @@ public class Player {
             discoveryEnd++;
         }
     } //How many rooms has been discovered
-
-    public Room getPlayerRoom() {
-        return getPlayerRoom();
-    }
-    public void setPlayerRoom(Room nextRoom) {
-        this.playerRoom=nextRoom;
-    }
 
     //Discovered Rooms
     Room[] discoveredRooms = new Room[9]; //Number of different rooms

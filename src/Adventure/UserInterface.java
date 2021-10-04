@@ -97,7 +97,7 @@ public class UserInterface {
             System.out.println(colorText(red,player.name+"'s inventory is empty"));
         } else {
             System.out.println("Items in inventory:" +
-                    colorText(blue,player.getInventory()));
+                    colorText(blue,getInventory()));
         }
     }
     public void take(String input){
@@ -105,10 +105,10 @@ public class UserInterface {
         if(tempItem!=null){
             if(player.itemWeightLimit(tempItem)) {
                 player.takeItem(tempItem);
-                System.out.println(colorText(green,player.name + " picks up " + tempItem.name));
+                System.out.println(colorText(green,player.name + " picks up the " + tempItem.name));
             }
             else{
-                System.out.println(colorText(red,player.name + " is not strong enough to pick up " + tempItem.name));
+                System.out.println(colorText(red,player.name + " is not strong enough to pick up the " + tempItem.name));
             }
         }
         else {
@@ -119,14 +119,13 @@ public class UserInterface {
         Items tempItem = player.findItem(input);
         if(tempItem!=null){
             player.dropItem(tempItem);
-            System.out.println(colorText(yellow,player.name + " drops " + tempItem.name));
+            System.out.println(colorText(yellow,player.name + " drops the " + tempItem.name));
         }
         else {
             System.out.println(colorText(red,player.name + " does not have " + input));
         }
-
-
     }
+
     public void help(){
         System.out.println(player.name + " asks for help\n" +
                 colorText(white,"""
@@ -172,7 +171,37 @@ public class UserInterface {
         if(player.playerRoom.items.size()==0){
             return colorText(red,"There are no items in " + player.playerRoom.roomName);
         }
-        return "Items:" + colorText(blue,player.playerRoom.getItems());
+        return "Items:" + colorText(blue,getRoomItems());
+    }
+    public String getInventory(){
+        int itemAmount = player.inventory.size();
+        String result = "";
+        for(int i=0; i<itemAmount; i++){
+            result += "\n" + addArticleCap(player.inventory.get(i)) + "("+player.inventory.get(i).nameID+")";
+        }
+        return result;
+    }
+    public String getRoomItems() {
+        String result = "";
+        for(int i=0; i<player.playerRoom.items.size(); i++){
+            result += "\n" + addArticleCap(player.playerRoom.items.get(i)) + "("+player.playerRoom.items.get(i).nameID+")";
+        }
+        return result;
+    }
+
+    public String addArticle(Items item){
+        char letter = item.name.toLowerCase().charAt(0);
+        return switch (letter) {
+            case ('a'), ('e'), ('i'), ('o'), ('y'), ('u') -> "an " + item.name;
+            default -> "a " + item.name;
+        };
+    }
+    public String addArticleCap(Items item){
+        char letter = item.name.toLowerCase().charAt(0);
+        return switch (letter) {
+            case ('a'), ('e'), ('i'), ('o'), ('y'), ('u') -> "An " + item.name;
+            default -> "A " + item.name;
+        };
     }
 
     //Colors
