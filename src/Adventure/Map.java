@@ -18,8 +18,10 @@ public class Map {
     Items item2 = new Items("collection of pokemon cards","cards",10);
     Items item3 = new Items("really big gun","gun",10);
     Items item4 = new Items("number 1","1",1);
+    Items item5 = new Items("mobile phone","phone",5);
     Items item10 = new Items("ability to count sheep","sheep",2);
     Items item11 = new Items("tent","tent",15);
+
 
     //  1 = 2 = 3 = home
     //  |   X   |

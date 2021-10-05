@@ -13,9 +13,7 @@ public class Adventure {
         boolean running = true;
         while (running) {
             //Scenarios
-            userInterface.discovery();
-            userInterface.timeLoss();
-            userInterface.homePath();
+            userInterface.scenarioCheck();
 
             //Menu
             String input = scT.nextLine();

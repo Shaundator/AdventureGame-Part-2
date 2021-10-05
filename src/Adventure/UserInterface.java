@@ -5,13 +5,20 @@ public class UserInterface {
 
     public UserInterface(String userName){
         this.player=new Player(userName);
-        player.getStarterRoom();
     }
     public void startGame(){
+        player.getStarterRoom();
+        player.getStarterInventory();
         System.out.println(introText());
     }
 
     //Scenarios
+    public void scenarioCheck(){
+        discovery();
+        timeLoss();
+        homePath();
+    }
+
     public void discovery(){
         if(player.getDiscoveryEnd()==1){
             System.out.println(colorText(green,player.name+ " has discovered all rooms!"));

@@ -17,6 +17,9 @@ public class Player {
         map.createMap();
         map.putItems();
     }
+    public void getStarterInventory(){
+        inventory.add(map.item5);
+    }
 
     public void takeItem(Items item){
         for(int i=0; i<playerRoom.items.size(); i++){
