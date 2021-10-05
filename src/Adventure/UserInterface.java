@@ -33,7 +33,7 @@ public class UserInterface {
                         " and fall sleep with the help of " + player.map.item10.name + " and " + player.map.item11.name);
                 player.map.resetTime();
                 System.out.println(".\n.\n.");
-                System.out.println(player.name + " wakes up and the hour is " + time());
+                System.out.println(player.name + " wakes up and the hour is " + getTime());
             } else {
                 System.out.println(colorText(cyan,"Cheers!") +
                         "\nas " + player.name + " uttered those words our hero lost to the midnight");
@@ -132,7 +132,7 @@ public class UserInterface {
             System.out.println(colorText(red,player.name + " does not have " + input));
         }
     }
-    public void getTime(){
+    public void time(){
         System.out.println("The time is " + (12+player.map.getTime()) + ":00"+amOrPm());
     }
 
@@ -199,7 +199,7 @@ public class UserInterface {
         }
         return result;
     }
-    public String time(){
+    public String getTime(){
         return (12+player.map.getTime()) + ":00"+amOrPm();
     }
 

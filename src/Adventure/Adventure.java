@@ -47,7 +47,7 @@ public class Adventure {
                     userInterface.drop(commandInput);
                     break;
                 case "time":
-                    userInterface.getTime();
+                    userInterface.time();
                     break;
                 case "help":
                     userInterface.help();
