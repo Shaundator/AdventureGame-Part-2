@@ -2,6 +2,7 @@ package Adventure;
 
 public class Map {
     int time=0;
+    int day=1;
     Room room1 = new Room("The Subway Station", "The train is loud, and so are the people walking around");
     Room room2 = new Room("The Train", "The train travels fast, yet it seems to do so in an eternity");
     Room room3 = new Room("A familiar yet unfamiliar place", "The place reminds of something, but what?");
@@ -32,10 +33,15 @@ public class Map {
     public void openHome(){
         room3.setEast(room10);
     }
-
     public void setTime(){
         time++;
     }
+
+    public void resetTime() {
+        time = -4;
+        day++;
+    }
+
     public int getTime(){
         return time;
     }
@@ -58,6 +64,7 @@ public class Map {
         room2.addItem(item4);
         room5.addItem(item1);
         room4.addItem(item10);
+        room4.addItem(item11);
     }
 
 

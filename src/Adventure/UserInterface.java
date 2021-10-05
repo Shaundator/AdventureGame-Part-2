@@ -2,17 +2,14 @@ package Adventure;
 
 public class UserInterface {
    Player player;
-   String userName;
 
     public UserInterface(String userName){
         this.player=new Player(userName);
         player.getStarterRoom();
     }
-
     public void startGame(){
         System.out.println(introText());
     }
-
 
     //Scenarios
     public void discovery(){
@@ -22,11 +19,14 @@ public class UserInterface {
         }
     }
     public void timeLoss(){
-        if(player.map.getTime()>=20){
-            System.out.println("It is midnight, and the primal instincts of " + player.name + "sets in...\n");
+        if(player.map.getTime()>=12){
+            System.out.println("It is midnight, and the primal instincts of " + player.name + " sets in...\n");
             if(player.inventory.contains(player.map.item10)&&player.inventory.contains(player.map.item11)){
-                System.out.println(player.name + " finds an open spot in " + player.playerRoom +
-                        "and fall sleep with the help of " + player.map.item10 + " and " + player.map.item11);
+                System.out.println(player.name + " finds an open spot " + inOrAtThe() + " " + player.playerRoom.roomName +
+                        " and fall sleep with the help of " + player.map.item10.name + " and " + player.map.item11.name);
+                player.map.resetTime();
+                System.out.println(".\n.\n.");
+                System.out.println(player.name + " wakes up and the hour is " + time());
             } else {
                 System.out.println(colorText(cyan,"Cheers!") +
                         "\nas " + player.name + " uttered those words our hero lost to the midnight");
@@ -125,6 +125,9 @@ public class UserInterface {
             System.out.println(colorText(red,player.name + " does not have " + input));
         }
     }
+    public void getTime(){
+        System.out.println("The time is " + (12+player.map.getTime()) + ":00"+amOrPm());
+    }
 
     public void help(){
         System.out.println(player.name + " asks for help\n" +
@@ -144,6 +147,7 @@ public class UserInterface {
                 player.playerRoom.roomName + " and truly becomes an alcoholic"));
     }
 
+    //System Messages
     public void invalidCommand(String command){
         System.out.println(colorText(red,"Unknown command: " + command));
     }
@@ -188,7 +192,11 @@ public class UserInterface {
         }
         return result;
     }
+    public String time(){
+        return (12+player.map.getTime()) + ":00"+amOrPm();
+    }
 
+    //Grammar
     public String addArticle(Items item){
         char letter = item.name.toLowerCase().charAt(0);
         return switch (letter) {
@@ -202,6 +210,24 @@ public class UserInterface {
             case ('a'), ('e'), ('i'), ('o'), ('y'), ('u') -> "An " + item.name;
             default -> "A " + item.name;
         };
+    }
+    public String amOrPm(){
+        if(player.map.getTime()<0){
+            return "am";
+        }
+        return "pm";
+    }
+    public String inOrAtThe(){
+        int startIndex = player.playerRoom.roomName.indexOf(" ");
+        String firstWord = player.playerRoom.roomName.substring(0,startIndex);
+        if(firstWord.equalsIgnoreCase("the")){
+            return "in";
+        }
+        if(firstWord.equalsIgnoreCase("a")){
+            return "by";
+        }
+        return "at the";
+
     }
 
     //Colors

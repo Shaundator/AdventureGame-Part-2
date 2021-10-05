@@ -12,6 +12,12 @@ public class Player {
     public Player(String name){
         this.name=name;
     }
+    public void getStarterRoom(){
+        playerRoom=map.room1;
+        map.createMap();
+        map.putItems();
+    }
+
     public void takeItem(Items item){
         for(int i=0; i<playerRoom.items.size(); i++){
             if(item==playerRoom.items.get(i)){
@@ -28,6 +34,16 @@ public class Player {
             }
         }
     }
+    public Items findItem(String input){
+        for(int i = 0; i < inventory.size(); i++ ){
+            if(inventory.get(i).nameID.equals(input)){
+                return inventory.get(i);
+            }
+        }
+        return null;
+    }
+
+
     public boolean itemWeightLimit(Items item){
         int currentWeight = 0;
         for(int i = 0; i < inventory.size(); i++){
@@ -38,25 +54,9 @@ public class Player {
         }
         return true;
     }
-    public Items findItem(String input){
-        for(int i = 0; i < inventory.size(); i++ ){
-            if(inventory.get(i).nameID.equals(input)){
-                return inventory.get(i);
-            }
-        }
-        return null;
-    }
-
-    public void getStarterRoom(){
-        playerRoom=map.room1;
-        map.createMap();
-        map.putItems();
-    }
-
-
     public int getDiscoveryEnd() {
         return discoveryEnd;
-    } //Equals 1 if all rooms has been discovered
+    } //equals 1 means all rooms has been discovered
     public void setDiscovery() {
         if(discoveryEnd==1){
             return;

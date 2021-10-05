@@ -22,7 +22,6 @@ public class Room {
     public void removeItem(Items item){
         items.remove(item);
     }
-
     public Items findItem(String input){
         for(int i = 0; i < items.size(); i++ ){
             if(items.get(i).nameID.equals(input)){
