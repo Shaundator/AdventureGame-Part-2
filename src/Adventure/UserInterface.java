@@ -14,11 +14,18 @@ public class UserInterface {
 
     //Scenarios
     public void scenarioCheck(){
+        dayCheck();
         discovery();
         timeLoss();
         homePath();
     }
 
+    public void dayCheck(){
+        if(player.map.getTime()==-4){
+            System.out.println(player.name + " wakes up to a new day");
+            System.out.println(colorText(cyan,"Day: " + player.map.day + "\n" + player.name + " has yet to find his way home..."));
+        }
+    }
     public void discovery(){
         if(player.getDiscoveryEnd()==1){
             System.out.println(colorText(green,player.name+ " has discovered all rooms!"));
@@ -47,6 +54,10 @@ public class UserInterface {
                     "\nA path to the east opens up, do you dare lead our hero into it?");
             player.map.openHome();
         }
+    }
+    public void passOut(){
+        System.out.println("The day has been wasted and " + player.name + " wakes up the next day");
+        player.map.resetTime();
     }
 
     //User Actions
@@ -107,6 +118,12 @@ public class UserInterface {
                     colorText(blue,getInventory()));
         }
     }
+    public void use(String item){
+        if(item.equalsIgnoreCase("phone")){
+            usePhone();
+        }
+        System.out.println(player.name + " uses the " + item);
+    }
     public void take(String input){
         Items tempItem = player.playerRoom.findItem(input);
         if(tempItem!=null){
@@ -135,7 +152,6 @@ public class UserInterface {
     public void time(){
         System.out.println("The time is " + (12+player.map.getTime()) + ":00"+amOrPm());
     }
-
     public void help(){
         System.out.println(player.name + " asks for help\n" +
                 colorText(white,"""
@@ -153,6 +169,15 @@ public class UserInterface {
     public void exit(){
         System.out.println(colorText(red,"Without warning " + player.name + " trips over some strange object in " +
                 player.playerRoom.roomName + " and truly becomes an alcoholic"));
+    }
+
+    //Items
+    public void usePhone(){
+        if(player.findItem("battery")!=null){
+            System.out.println(colorText(cyan,player.name + " opens the phone and looks at funny pictures till the battery runs out"));
+            player.inventory.remove(player.findItem("battery"));
+            passOut();
+        }
     }
 
     //System Messages

@@ -40,14 +40,17 @@ public class Adventure {
                 case "inventory":
                     userInterface.inventory();
                     break;
+                case "time":
+                    userInterface.time();
+                    break;
+                case "use":
+                    userInterface.use(commandInput);
+                    break;
                 case "take":
                     userInterface.take(commandInput);
                     break;
                 case "drop":
                     userInterface.drop(commandInput);
-                    break;
-                case "time":
-                    userInterface.time();
                     break;
                 case "help":
                     userInterface.help();
