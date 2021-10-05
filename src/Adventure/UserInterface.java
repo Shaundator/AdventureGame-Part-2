@@ -142,6 +142,7 @@ public class UserInterface {
                 Move Commands
                 Go: Move player, North, East, South, West
                 Look: Information of current location
+                Time: Check the time
                 Inventory: Shows held items
                 Take: Pick up an item at the location
                 Drop: Drop an item at the location
